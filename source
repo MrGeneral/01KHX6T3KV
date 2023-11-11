@@ -1,0 +1,26 @@
+spawn(function()
+	pcall(function()
+		while wait() do
+			local v1 = game:GetService("Workspace")
+			local v2 = game:GetService("Players")
+			local v3 = v1:WaitForChild("MAP")
+			local v4 = v3:WaitForChild("Pages")
+			local v5 = v3:WaitForChild("HPageSpawns")
+			local v6 = v2.LocalPlayer.Character:WaitForChild("HumanoidRootPart")
+		
+			local function moveToTransparentParts(partList)
+				for _, v in pairs(partList:GetChildren()) do
+					if v:IsA("Part") and v.Transparency == 0 then
+						repeat
+							wait()
+							v6.CFrame = CFrame.new(v.Position)
+						until v.Transparency == 1
+					end
+				end
+			end
+
+			moveToTransparentParts(v4)
+			moveToTransparentParts(v5)
+		end
+	end
+end)
